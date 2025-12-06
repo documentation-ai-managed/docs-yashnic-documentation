@@ -1,0 +1,105 @@
+---
+title: Services
+description: Detailed overview of YashNic's custom AI development and implementation services
+---
+
+## Custom AI Development Services
+
+YashNic offers comprehensive custom AI development services designed to meet the unique needs of organizations seeking to implement artificial intelligence solutions. Our team of experts works closely with clients to build tailored AI systems that address specific business challenges and drive measurable results.
+
+<Columns cols={2}>
+  <Card title="AI Consulting" icon="settings" href="#consulting">
+    Strategic guidance on AI implementation and technology selection.
+  </Card>
+  <Card title="Model Development" icon="cpu" href="#development">
+    Custom AI model creation using advanced machine learning techniques.
+  </Card>
+</Columns>
+
+## AI Consulting
+
+Our consulting services begin with a thorough assessment of your current processes and data infrastructure. We analyze your business objectives to identify opportunities where AI can deliver the most significant impact. This includes evaluating data quality, infrastructure requirements, and integration possibilities with existing systems.
+
+<Steps>
+  <Step title="Discovery" icon="search">
+    We conduct detailed interviews and workshops to understand your business challenges and goals.
+  </Step>
+  <Step title="Analysis" icon="bar-chart">
+    Our team analyzes your data and processes to identify AI opportunities and potential ROI.
+  </Step>
+  <Step title="Strategy" icon="target">
+    We develop a comprehensive AI strategy with clear milestones and success metrics.
+  </Step>
+  <Step title="Implementation Plan" icon="clipboard">
+    Detailed roadmap for AI deployment, including timelines and resource requirements.
+  </Step>
+</Steps>
+
+## Model Development
+
+YashNic specializes in developing custom AI models that leverage the latest machine learning and deep learning techniques. Whether you need natural language processing, computer vision, or predictive analytics, our development process ensures robust, scalable, and accurate models.
+
+<CodeGroup tabs="Python,JavaScript">
+  ```python
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+
+# Load and preprocess data
+data = load_your_data()
+X_train, X_test, y_train, y_test = train_test_split(data.features, data.labels, test_size=0.2)
+
+# Build and train model
+model = tf.keras.Sequential([
+    tf.keras.layers.Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
+    tf.keras.layers.Dense(32, activation='relu'),
+    tf.keras.layers.Dense(1, activation='sigmoid')
+])
+
+model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+model.fit(X_train, y_train, epochs=50, validation_split=0.2)
+  ```
+  ```javascript
+// Example AI integration with Node.js
+const tf = require('@tensorflow/tfjs');
+
+async function loadAndPredict() {
+    const model = await tf.loadLayersModel('model.json');
+    const inputTensor = tf.tensor2d([[feature1, feature2, feature3]]);
+    const prediction = model.predict(inputTensor);
+    const result = await prediction.data();
+    console.log('Prediction:', result);
+}
+
+loadAndPredict();
+  ```
+</CodeGroup>
+
+## Integration and Deployment
+
+We ensure seamless integration of AI models into your existing infrastructure. Our deployment services include containerization, API development, and monitoring setup to guarantee reliable performance in production environments.
+
+<Tabs>
+  <Tab title="Cloud Deployment" icon="cloud">
+    Deploy AI models on cloud platforms like AWS, Azure, or Google Cloud for scalability and reliability.
+  </Tab>
+  <Tab title="On-Premise" icon="server">
+    Implement AI solutions on your local infrastructure for data privacy and compliance requirements.
+  </Tab>
+  <Tab title="Hybrid" icon="network">
+    Combine cloud and on-premise deployment for optimal performance and security.
+  </Tab>
+</Tabs>
+
+## Support and Maintenance
+
+Our services extend beyond initial development with comprehensive support and maintenance packages. We provide ongoing model updates, performance monitoring, and retraining to ensure your AI solutions remain effective as your data and business needs evolve.
+
+<Callout kind="info">All our AI models are developed with explainability and bias mitigation techniques to ensure ethical and transparent AI implementations.</Callout>
+
+<Expandable title="What technologies does YashNic use?" default-open="false">
+  YashNic leverages state-of-the-art technologies including TensorFlow, PyTorch, and custom frameworks. We also work with cloud platforms and edge computing solutions to deliver optimal performance.
+</Expandable>
+
+<Expandable title="How long does AI development typically take?" default-open="false">
+  Development timelines vary based on complexity, but most projects range from 3-6 months. Simple models can be deployed in weeks, while complex enterprise solutions may take longer.
+</Expandable>

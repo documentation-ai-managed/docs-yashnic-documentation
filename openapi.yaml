@@ -1,0 +1,160 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: YashNic API
+  license:
+    name: MIT
+servers:
+  - url: http://api.yashnic.com/v1
+paths:
+  /ai-solutions:
+    get:
+      summary: List all AI solutions
+      operationId: listSolutions
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of AI solutions
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Solutions'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a new AI solution
+      operationId: createSolution
+      responses:
+        201:
+          description: AI solution created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /ai-solutions/{solutionId}:
+    get:
+      summary: Get details of a specific AI solution
+      operationId: getSolution
+      parameters:
+        - name: solutionId
+          in: path
+          required: true
+          description: The unique identifier of the AI solution
+          schema:
+            type: string
+      responses:
+        200:
+          description: Detailed information about the requested AI solution
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Solutions'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /training-programs:
+    get:
+      summary: Retrieve a list of all available AI training programs
+      operationId: listTrainingPrograms
+      parameters:
+        - name: category
+          in: query
+          description: Filter training programs by category such as beginner, advanced, or industry-specific
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: A comprehensive list of training programs with details on duration, prerequisites, and learning outcomes
+          headers:
+            x-total-count:
+              description: Total number of training programs available
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainingPrograms'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Register a new AI training program
+      operationId: createTrainingProgram
+      responses:
+        201:
+          description: Training program successfully registered and ready for enrollment
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Solution:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          type: string
+    Solutions:
+      type: array
+      items:
+        $ref: '#/components/schemas/Solution'
+    TrainingProgram:
+      required:
+        - id
+        - title
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        duration:
+          type: string
+    TrainingPrograms:
+      type: array
+      items:
+        $ref: '#/components/schemas/TrainingProgram'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
